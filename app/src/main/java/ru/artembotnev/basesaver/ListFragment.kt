@@ -32,7 +32,7 @@ class ListFragment : Fragment() {
         //floating action button, create new item of clothes and add one to list
         fab!!.setOnClickListener({
             val item = ClothesItem()
-            Wardrobe.get(context!!).add(item)
+            Wardrobe.getInstance(context!!).add(item)
 
             startItemActivity(item)
         })
@@ -49,7 +49,7 @@ class ListFragment : Fragment() {
     }
 
     private fun updateUI() {
-        val clothes = Wardrobe.get(context!!).getClothes()
+        val clothes = Wardrobe.getInstance(context!!).getClothes()
         if (rvAdapter == null) {
             rvAdapter = ClothesAdapter(clothes)
             recyclerView.adapter = rvAdapter

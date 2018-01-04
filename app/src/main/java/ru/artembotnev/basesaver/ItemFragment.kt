@@ -38,7 +38,7 @@ class ItemFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val id = arguments!!.getSerializable(ID) as UUID
-        clothesItem = Wardrobe.get(context!!).getItem(id) ?:
+        clothesItem = Wardrobe.getInstance(context!!).getItem(id) ?:
                 throw NullPointerException("clothes item is null!")
     }
 
@@ -104,13 +104,13 @@ class ItemFragment : Fragment() {
 
         //Delete button
         delete.setOnClickListener {
-            Wardrobe.get(context!!).delete(clothesItem)
+            Wardrobe.getInstance(context!!).delete(clothesItem)
             activity!!.finish()
         }
     }
 
     override fun onPause() {
         super.onPause()
-        Wardrobe.get(context!!).update(clothesItem)
+        Wardrobe.getInstance(context!!).update(clothesItem)
     }
 }

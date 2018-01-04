@@ -16,18 +16,18 @@ import kotlin.collections.ArrayList
  * Created by Artem Botnev on 10/12/17.
  */
 
-class Wardrobe(context: Context) {
+class Wardrobe private constructor(context: Context) {
     companion object {
-        private var wardrobe: Wardrobe? = null
+        private var instance: Wardrobe? = null
 
-        fun get(c: Context): Wardrobe {
-            return wardrobe ?: Wardrobe(c)
+        fun getInstance(c: Context): Wardrobe {
+            return instance ?: Wardrobe(c)
         }
     }
 
     private val db = ItemBaseHelper(context).writableDatabase
 
-    //get list of clothes
+    //getInstance list of clothes
     fun getClothes(): List<ClothesItem> {
         val cursor = queryItem(null, null)
         val clothes = ArrayList<ClothesItem>()
@@ -43,7 +43,7 @@ class Wardrobe(context: Context) {
         return clothes
     }
 
-    //get item clothes
+    //getInstance item clothes
     fun getItem(itemId: UUID): ClothesItem? {
         val cursor = queryItem(
                 "${ItemTable.Cols.UUID}=? ",
@@ -100,7 +100,7 @@ class Wardrobe(context: Context) {
         return contentValues
     }
 
-    // get cursor wrapper
+    // getInstance cursor wrapper
     @SuppressLint("Recycle")
     private fun queryItem(where: String?, whereArgs: Array<String>?): ItemCursorWrapper {
         val cursor = db.query(ItemTable.NAME,
