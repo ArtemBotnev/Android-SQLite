@@ -27,7 +27,7 @@ class Wardrobe private constructor(context: Context) {
 
     private val db = ItemBaseHelper(context).writableDatabase
 
-    //getInstance list of clothes
+    //get list of clothes
     fun getClothes(): List<ClothesItem> {
         val cursor = queryItem(null, null)
         val clothes = ArrayList<ClothesItem>()
@@ -43,7 +43,7 @@ class Wardrobe private constructor(context: Context) {
         return clothes
     }
 
-    //getInstance item clothes
+    //get item clothes
     fun getItem(itemId: UUID): ClothesItem? {
         val cursor = queryItem(
                 "${ItemTable.Cols.UUID}=? ",
@@ -100,7 +100,7 @@ class Wardrobe private constructor(context: Context) {
         return contentValues
     }
 
-    // getInstance cursor wrapper
+    // get cursor wrapper
     @SuppressLint("Recycle")
     private fun queryItem(where: String?, whereArgs: Array<String>?): ItemCursorWrapper {
         val cursor = db.query(ItemTable.NAME,

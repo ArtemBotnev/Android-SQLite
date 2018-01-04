@@ -64,7 +64,7 @@ class ItemFragment : Fragment() {
             }
         })
 
-        //Select item spinner
+        //Select  item spinner
         itemType.setSelection(clothesItem.type)
         itemType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {

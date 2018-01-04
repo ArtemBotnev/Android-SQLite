@@ -37,7 +37,7 @@ class ListFragment : Fragment() {
             startItemActivity(item)
         })
 
-        //recycler
+        // recycler
         recyclerView = recycler
         recyclerView.layoutManager = LinearLayoutManager(activity) //add layout manager
         updateUI()
